@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(24.) Kalkulačka </title>
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet"> 
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #040d3f;
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            align-items:center;
+            justify-content: center;
+        }
+        .calculator{
+            display:grid;
+            grid-template-columns: 1fr repeat(3, 0.5fr) repeat(2, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            height: 50%;
+            width: 50%;
+            background-color: #6c7095;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .item{
+            background-color: #3a438c;
+            color: #efeff2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            border-radius: 5px;
+            user-select: none;
+        }
+        .itemResult{
+            background-color: #424569;
+            color: #b3b4b4;
+            grid-column: 1 / 7;
+            display: flex;
+            justify-content: flex-end;
+            align-items:center;
+            padding: 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .itemDouble{
+            background-color: #040d3f;
+            color: #efeff2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            border-radius: 5px;
+            user-select: none;
+        }
+        .itemPlus{
+            background-color: #040d3f;
+            color: #efeff2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-row: 5 / 7;
+            grid-column:5;
+            font-size: 60px;
+            border-radius: 5px;
+            user-select: none;
+        }
+        .itemEntity{
+            font-size: 30px;
+            background-color: #040d3f;
+            color: #efeff2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            user-select: none;
+        }
+        .itemArrow{
+            font-size: 40px;
+            background-color: #040d3f;
+            color: #efeff2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+            border-radius: 5px;
+        }
+        .item:hover{
+            transform: scale(0.9);
+            cursor:pointer;
+        }
+        .itemArrow:hover{
+            transform: scale(0.9);
+            cursor:pointer;
+        }
+        .itemDouble:hover{
+            transform: scale(0.9);
+            cursor:pointer;
+        }
+        .itemEntity:hover{
+            transform: scale(0.9);
+            cursor:pointer;
+        }
+        .itemPlus:hover{
+            transform: scale(0.9);
+            transform:rotate(10deg);
+            cursor:pointer;
+        }
+        </style>
+</head>
+<body>
+    <!--Javascript jsem dělal zde poprvé v životě. Sice jsem zjistil že je to dost podobné mně známému C#, ale i tak jsem dělal hodně googlení. Ale kalkulačku jsem nikde neopsal je celá moje (proto je to také tak hnusně napsané ale kromě buttonu M/EX funguje vše. Hlavně jsem používal w3 schools. A funkci eval() mi poradil Milan Savickij.)-->
+    <div class="calculator">
+        <div class="itemResult" id="result"></div>
+
+        <div class="itemDouble">M/EX</div>
+        <div class="itemDouble" onclick="memoryPlus()">M+</div>
+        <div class="itemDouble" onclick="memoryMinus()">M-</div>
+        <div class="itemDouble" onclick="memoryReload()">MR</div>
+        <div class="itemDouble" onclick="memoryClear()">MC</div>
+        <div class="itemDouble" id="button" onclick="onOff()">ON / OFF</div>
+        
+        <div class="itemDouble" onclick="AC()">AC</div>
+        <div class="item" onclick="some(7)">7</div>
+        <div class="item" onclick="some(8)">8</div>
+        <div class="item" onclick="some(9)">9</div>
+        <div class="itemDouble" onclick="percentage()">%</div>
+        <div class="itemEntity" onclick="square()">&check;</div>
+
+        <div class="itemEntity" onclick="backspace()"><=</div>
+        <div class="item" onclick="some(4)">4</div>
+        <div class="item" onclick="some(5)">5</div>
+        <div class="item" onclick="some(6)">6</div>
+        <div class="itemDouble" onclick="times()">x</div>
+        <div class="itemEntity" onclick="divide()">&divide;</div>
+
+        <div class="itemDouble" onclick="bracketLeft()">(</div>
+        <div class="item" onclick="some(1)">1</div>
+        <div class="item" onclick="some(2)">2</div>
+        <div class="item" onclick=some(3)>3</div>
+        <div class="itemPlus" onclick="plus()">+</div>
+        <div class="itemDouble" onclick="minus()">-</div>
+
+        <div class="itemDouble" onclick="bracketRight()">)</div>
+        <div class="item" id="zero" onclick=some(0)>0</div>
+        <div class="item" onclick=some(0)>00</div>
+        <div class="item" onclick="dot()">.</div>
+        <div class="itemDouble" class="disable" id="equal" onclick="equal()">=</div>
+
+        <script>
+            let number = "";
+            let memory = 0;
+            let plusPressed = false;
+            let timesPressed = false;
+            let dividePressed = false;
+            let minusPressed = false;
+            let bracketLeftPressed = false;
+            let bracketRightPressed = false;
+            let on = false;
+
+            document.getElementById("button").style.backgroundColor = "red";
+            document.getElementById("result").innerHTML = localStorage.getItem("cookie");
+            number = localStorage.getItem("cookie");
+    
+            function onOff(){
+                if(on == false){
+                    on = true;
+                    document.getElementById("button").style.backgroundColor = "green";
+                }
+                else if(on == true){
+                    on = false;
+                    document.getElementById("button").style.backgroundColor = "red";
+                }
+            }
+            function memoryPlus(){
+                if(on == true){
+                    memory += eval(number);
+                    localStorage.setItem("memory", memory);
+                    console.log("10");
+                }
+                
+            }
+            function memoryMinus(){
+                if(on == true){
+                    memory -= eval(number);
+                    localStorage.setItem("memory", memory);
+                }
+            }
+            function memoryReload(){
+                if(on == true){
+                    number = localStorage.getItem("memory");
+                    document.getElementById("result").innerHTML = number;
+                }
+            }
+            function memoryClear(){
+                if(on == true){
+                    localStorage.removeItem("memory");
+                    memory = 0;
+                }
+            }
+            
+            function plus(){
+                if(plusPressed == false && on == true) {
+                    number += "+";
+                    document.getElementById("result").innerHTML = number;
+                    plusPressed = true;
+                    timesPressed = false
+                    dividePressed = false;
+                    minusPressed = false;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function minus(){
+                if(minusPressed == false && on == true) {
+                    number += "-";
+                    document.getElementById("result").innerHTML = number;
+                    plusPressed = false;
+                    timesPressed = false
+                    dividePressed = false;
+                    minusPressed = true;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function backspace(){
+                if(on == true){
+                    number = localStorage.getItem("cookie");
+                    number = number.substring(0, number.length - 1);
+                    document.getElementById("result").innerHTML = number;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function bracketLeft(){
+                if(bracketLeftPressed == false && on == true){
+                    number += "(";
+                    document.getElementById("result").innerHTML = number;
+                    bracketLeftPressed = true;
+                    bracketRightPressed = false;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function dot(){
+                if(dotPressed == false && on == true){
+                    number += ".";
+                    document.getElementById("result").innerHTML = number;
+                    localStorage.setItem("cookie", number);
+                    dotPressed = true;
+                }
+            }
+            function bracketRight(){
+                if(bracketRightPressed == false && on == true){
+                    number += ")";
+                    document.getElementById("result").innerHTML = number;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = true;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function percentage(){
+                if(on == true){
+                    number = number / 100;
+                    document.getElementById("result").innerHTML = number;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function divide(){
+                if(dividePressed == false && on == true) {
+                    number += "/";
+                    document.getElementById("result").innerHTML = number;
+                    plusPressed = false;
+                    timesPressed = false
+                    dividePressed = true;
+                    minusPressed = false;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function square(){
+                if(on == true){
+                    number = Math.sqrt(eval(number));
+                    document.getElementById("result").innerHTML = number;
+                    minusPressed = false;
+                    plusPressed = false;
+                    timesPressed = false;
+                    dividePressed = false;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function times(){
+                if(timesPressed == false && on == true) {
+                    number += "*";
+                    document.getElementById("result").innerHTML = number;
+                    timesPressed = true;
+                    plusPressed = false;
+                    dividePressed = false;
+                    minusPressed = false;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+            function equal(){
+                if(on == true){
+                    document.getElementById("result").innerHTML = eval(number);
+                    number = eval(number);
+                    localStorage.setItem("cookie", number);
+                    plusPressed = false;
+                    timesPressed = false;
+                    dividePressed = false;
+                    minusPressed = false;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                }
+            }
+            function AC(){
+                if(on == true){
+                    number = "";
+                    document.getElementById("result").innerHTML = number;
+                    localStorage.removeItem("cookie");
+                    plusPressed = false;
+                    timesPressed = false;
+                    dividePressed = false;
+                    minusPressed = false;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                }
+            }
+
+            function some(variable){
+                if(on == true){
+                    document.getElementById("result").innerHTML += variable;
+                    plusPressed = false;
+                    timesPressed = false;
+                    dividePressed = false;
+                    minusPressed = false;
+                    bracketLeftPressed = false;
+                    bracketRightPressed = false;
+                    dotPressed = false;
+                    number += variable;
+                    localStorage.setItem("cookie", number);
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
