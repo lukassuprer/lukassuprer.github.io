@@ -116,10 +116,26 @@
             transform:rotate(10deg);
             cursor:pointer;
         }
+        .memory{
+            height:50%;
+            width:400px;
+            background-color:black;
+            margin-right: 200px;
+            color: white;
+            text-align: center;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction: column;
+        }
         </style>
 </head>
 <body>
     <!--Javascript jsem dělal zde poprvé v životě. Sice jsem zjistil že je to dost podobné mně známému C#, ale i tak jsem dělal hodně googlení. Ale kalkulačku jsem nikde neopsal je celá moje (proto je to také tak hnusně napsané ale kromě buttonu M/EX funguje vše. Hlavně jsem používal w3 schools. A funkci eval() mi poradil Milan Savickij.)-->
+    <div class="memory">
+        Memory
+        <div id="memoryText"></div>
+    </div>
     <div class="calculator">
         <div class="itemResult" id="result"></div>
 
@@ -153,7 +169,7 @@
 
         <div class="itemDouble" onclick="bracketRight()">)</div>
         <div class="item" id="zero" onclick=some(0)>0</div>
-        <div class="item" onclick=some(0)>00</div>
+        <div class="item" onclick=doubleZero()>00</div>
         <div class="item" onclick="dot()">.</div>
         <div class="itemDouble" class="disable" id="equal" onclick="equal()">=</div>
 
@@ -167,6 +183,7 @@
             let bracketLeftPressed = false;
             let bracketRightPressed = false;
             let on = false;
+            let memoryText;
 
             document.getElementById("button").style.backgroundColor = "red";
             document.getElementById("result").innerHTML = localStorage.getItem("cookie");
@@ -186,7 +203,7 @@
                 if(on == true){
                     memory += eval(number);
                     localStorage.setItem("memory", memory);
-                    console.log("10");
+                    document.getElementById("memoryText").innerHTML = memory.toString();
                 }
                 
             }
@@ -194,6 +211,7 @@
                 if(on == true){
                     memory -= eval(number);
                     localStorage.setItem("memory", memory);
+                    document.getElementById("memoryText").innerHTML = memory.toString();
                 }
             }
             function memoryReload(){
@@ -206,6 +224,7 @@
                 if(on == true){
                     localStorage.removeItem("memory");
                     memory = 0;
+                    document.getElementById("memoryText").innerHTML = memory.toString();
                 }
             }
             
@@ -354,6 +373,22 @@
                     dotPressed = false;
                     number += variable;
                     localStorage.setItem("cookie", number);
+                }
+            }
+            function doubleZero(){
+                for(var i = 0; i < 2; i++) {
+                    if(on == true){
+                        document.getElementById("result").innerHTML += 0;
+                        plusPressed = false;
+                        timesPressed = false;
+                        dividePressed = false;
+                        minusPressed = false;
+                        bracketLeftPressed = false;
+                        bracketRightPressed = false;
+                        dotPressed = false;
+                        number += 0;
+                        localStorage.setItem("cookie", number);
+                    }
                 }
             }
         </script>
