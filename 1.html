@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(24.) Kalkulačka </title>
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet"> 
+    <style>
+    body {
+        width: 100vw;
+        height: 100vh;
+        background-color: #040d3f;
+        font-family: 'Roboto Mono', monospace;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+    }
+    .calculator{
+        display:grid;
+        grid-template-columns: 1fr repeat(3, 0.5fr) repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        height: 50%;
+        width: 50%;
+        background-color: #6c7095;
+        gap: 20px;
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .item{
+        background-color: #3a438c;
+        color: #efeff2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+    .itemResult{
+        background-color: #424569;
+        color: #b3b4b4;
+        grid-column: 1 / 7;
+        display: flex;
+        justify-content: flex-end;
+        align-items:center;
+        padding: 20px;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+    .itemDouble{
+        background-color: #040d3f;
+        color: #efeff2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+    .itemPlus{
+        background-color: #040d3f;
+        color: #efeff2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-row: 5 / 7;
+        grid-column:5;
+        font-size: 60px;
+        border-radius: 5px;
+    }
+    .itemEntity{
+        font-size: 30px;
+        background-color: #040d3f;
+        color: #efeff2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+    }
+    .itemArrow{
+        font-size: 40px;
+        background-color: #040d3f;
+        color: #efeff2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+    }
+    .item:hover{
+        transform: scale(0.9);
+        cursor:pointer;
+    }
+    .itemArrow:hover{
+        transform: scale(0.9);
+        cursor:pointer;
+    }
+    .itemDouble:hover{
+        transform: scale(0.9);
+        cursor:pointer;
+    }
+    .itemEntity:hover{
+        transform: scale(0.9);
+        cursor:pointer;
+    }
+    .itemPlus:hover{
+        transform: scale(0.9);
+        transform:rotate(10deg);
+        cursor:pointer;
+    }
+
+    @media (max-width:900px){
+            body {
+                overflow: auto;
+            }
+            .calculator{
+                width: 60%;
+            }
+        }
+        @media (max-width:360px){
+            body{
+                font-size: 5px;
+            }
+            .calculator{
+                width: 100%;
+            }
+            .itemDouble{
+                font-size: 15px;
+                width: 25px;
+            }
+            .item{
+                font-size: 15px;
+                width:25px;
+            }
+            .itemResult{
+                height:5px;
+            }
+        }
+        @media(min-width:360px) and (max-width:900px){
+            .calculator{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="itemResult">120 &divide; 78 - 20 / 2</div>
+
+        <div class="itemDouble">M/EX</div>
+        <div class="itemDouble">M+</div>
+        <div class="itemDouble">M-</div>
+        <div class="itemDouble">MR</div>
+        <div class="itemDouble">MC</div>
+        <div class="itemDouble">GT</div>
+        
+        <div class="itemDouble">AC</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="itemDouble">%</div>
+        <div class="itemEntity">&check;</div>
+
+        <div class="itemEntity">&plusmn;</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="itemDouble">x</div>
+        <div class="itemEntity">&divide;</div>
+
+        <div class="itemArrow">&#10148;</div>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="itemPlus">+</div>
+        <div class="itemDouble">-</div>
+
+        <div class="itemDouble">C</div>
+        <div class="item">0</div>
+        <div class="item">00</div>
+        <div class="item">.</div>
+        <div class="itemDouble">=</div>
+    </div>
+</body>
+</html>
