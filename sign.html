@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(32.) Přihlašovací formulář </title>
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(to right, #fcbf8b, #f9d57b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            background-color: black;
+            width: 60%;
+            color: white;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: row;
+            border-radius: 25px;
+            padding: 15px;
+            gap: 75px;
+        }
+
+        .leftContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            background-image: url("https://api-ssps.cajthaml.eu/file/2021-2022/2-wba/32/cat-g36d119d2e_1920_xAmEyfp5.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .fadedBox {
+            background-color: rgba(188, 173, 167, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            padding-top: 75px;
+            padding-bottom: 75px;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+
+        .rightContainer {
+            width: 50%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-top: 100px;
+            flex-direction: column;
+        }
+
+        .mailBox {
+            width: 85%;
+            height: 30px;
+            border-style: solid;
+            border-radius: 5px;
+            border-width: 1px;
+            border-color: rgba(188, 173, 167, 0.2);
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .signBox {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fb8b3b;
+            box-shadow: 0 0 5px 1px #fb8b3b;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 30px;
+        }
+
+        .checkbox {
+            width: 10px;
+            height: 10px;
+        }
+
+        .signBox>p:nth-child(1) {
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+        }
+
+        p:nth-child(1) {
+            font-size: 20px;
+            padding-bottom: 5px;
+        }
+
+        p:nth-child(2) {
+            font-weight: 700;
+            font-size: 25px;
+            padding-bottom: 25px;
+        }
+
+        p:nth-child(3) {
+            font-size: 12px;
+            padding-bottom: 100px;
+        }
+
+        p:nth-child(4) {
+            font-size: 10px;
+            padding-bottom: 10px;
+        }
+
+        p:nth-child(5) {
+            font-size: 20px;
+        }
+
+        .rightContainer>p:nth-child(1) {
+            font-weight: 700;
+            font-size: 25px;
+            padding-bottom: 20px;
+        }
+
+        .rightContainer>p:nth-child(2) {
+            font-size: 15px;
+            font-weight: 300;
+            color: grey;
+        }
+
+        .rightContainer>p:nth-child(3) {
+            font-size: 12px;
+            font-weight: 300;
+            color: grey;
+            padding-bottom: 10px;
+        }
+
+        .rightContainer>p:nth-child(5) {
+            font-size: 12px;
+            font-weight: 300;
+            color: grey;
+            padding-bottom: 10px;
+        }
+
+        form>p:nth-child(2) {
+            font-size: 12px;
+            font-weight: 300;
+            color: grey;
+            padding-bottom: 0px;
+        }
+
+        @media(max-width: 1066px) {
+            p:nth-child(2) {
+                font-weight: 700;
+                font-size: 20px;
+                padding-bottom: 25px;
+            }
+        }
+
+        @media(max-width: 996px) {
+            .rightContainer>p:nth-child(1) {
+                font-weight: 700;
+                font-size: 20px;
+                padding-bottom: 20px;
+            }
+        }
+
+        @media(max-width: 835px) {
+            .rightContainer>p:nth-child(1) {
+                font-weight: 700;
+                font-size: 15px;
+                padding-bottom: 20px;
+            }
+
+            main {
+                gap: 40px;
+            }
+        }
+
+        @media(max-width: 600px) {
+            p:nth-child(1) {
+                font-size: 10px;
+            }
+
+            p:nth-child(2) {
+                font-size: 15px;
+            }
+
+            p:nth-child(3) {
+                font-size: 12px;
+            }
+
+            p:nth-child(4) {
+                font-size: 10px;
+            }
+
+            p:nth-child(5) {
+                font-size: 10px;
+            }
+
+            .leftContainer {
+                padding: 0px;
+            }
+        }
+
+        @media(max-width: 460) {
+            main {
+                gap: 0px;
+            }
+
+            .leftContainer {
+                padding: 1px;
+            }
+        }
+
+        @media(max-width: 390px) {
+
+            main {
+                flex-direction: column;
+                margin-top: 250px;
+            }
+
+            .leftContainer {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                background-image: url("https://api-ssps.cajthaml.eu/file/2021-2022/2-wba/32/cat-g36d119d2e_1920_xAmEyfp5.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            .fadedBox {
+                background-color: rgba(188, 173, 167, 0.5);
+                backdrop-filter: blur(5px);
+                border-radius: 20px;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                padding-top: 75px;
+                padding-bottom: 75px;
+                padding-right: 20px;
+                padding-left: 20px;
+            }
+
+            .rightContainer {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 0px;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--https://www.w3schools.com/css/css3_gradients.asp gradient pozadí-->
+    <!--backdrop-filter mi doporučil spolužák Adam Kostka-->
+    <main>
+        <div class="leftContainer">
+            <div class="fadedBox">
+                <p>Všichni tu</p>
+
+                <p>na tebe čekáme !</p>
+
+                <p>Připoj se k více jak 1 milionu uživatelů a více jak 4.2
+                    milionu koček na platformě CattoS.
+                </p>
+
+                <p>Nemáš účet?</p>
+
+                <p>Registruj se</p>
+            </div>
+        </div>
+        <div class="rightContainer">
+            <p>Vítej kočičí osobo !</p>
+
+            <p>Přihlaš se</p>
+
+            <p>E-mail</p>
+
+            <div class="mailBox"></div>
+
+            <p>Heslo</p>
+
+            <div class="mailBox"></div>
+
+            <form action="">
+                <input type="checkbox" class="checkbox">
+                <p>Přihlásit se dlouhodobě</p>
+            </form>
+            <div class="signBox">
+                <p>Přihlásit se</p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
