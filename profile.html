@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(34.) Profil </title>
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 75%;
+            height: 25rem;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-top: 40px;
+            flex-direction: column;
+        }
+
+        .topImage {
+            background-image: url("https://preview.redd.it/hi18w9511s081.png?width=3840&format=png&auto=webp&s=80e8f4d1ba9c428b64bb77681334cf210ac38cf6");
+            width: 100%;
+            height: 60%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            position: relative;
+        }
+
+        .profileImage {
+            background-image: url("https://i.pinimg.com/originals/1e/7a/7a/1e7a7abfbe257af83b07ee8755a1ec3f.png");
+            width: 10vmax;
+            height: 10vmax;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #680747;
+            position: relative;
+            top: 20%;
+        }
+
+        .pfp {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 20%;
+            height: 100%;
+            position: relative;
+        }
+
+        .number {
+            position: relative;
+            background-color: white;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #141010;
+            border-style: solid;
+            border-color: #680747;
+            border-width: 10px;
+            font-weight: bold;
+            top: 70%;
+            left: 70%;
+        }
+
+        .middleImages {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            height: 50%;
+            width: 30%;
+            top: 200px;
+        }
+
+        .buttonWrapper {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            column-gap: 40px;
+            width: 40%;
+            top: 110px;
+            right: 3%;
+        }
+
+        .addFriend {
+            background-color: #f70776;
+            color: white;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 14px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+
+        .sendMessage {
+            background-color: #c3195d;
+            color: white;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 14px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+
+        .leftSide {
+            width: 40%;
+        }
+
+        /*Spodní část*/
+        .bottomInfo {
+            width: 100%;
+            height: 40%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+        }
+
+        .statics {
+            width: 50%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .leftStatics {
+            width: 40%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 50%;
+            border-right: 1px;
+            border-color: rgba(128, 128, 128, 0.534);
+            border-style: solid;
+            margin-bottom: 15px;
+            row-gap: 7px;
+        }
+
+        .endBlock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 50%;
+            margin-bottom: 15px;
+            row-gap: 7px;
+        }
+
+        .biggerText {
+            display: flex;
+            font-weight: 600;
+        }
+
+        .smallerText {
+            display: flex;
+            color: grey;
+            font-size: 10px;
+        }
+
+        .name {
+            width: 20%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 50px;
+        }
+
+        .icons {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            column-gap: 40px;
+            margin-bottom: 15px;
+        }
+        .iconsSmallerBlocks{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 20px;
+        }
+
+        .iconBlock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #c3195d;
+            height: 50px;
+            width: 50px;
+        }
+
+        .fa-facebook-f {
+            background-color: #c3195d;
+            color: white;
+            font-size: 30px;
+            border-radius: 50%;
+        }
+
+        .fa-instagram {
+            background-color: #c3195d;
+            color: white;
+            font-size: 30px;
+            border-radius: 50%;
+        }
+
+        .fa-discord {
+            background-color: #c3195d;
+            color: white;
+            font-size: 30px;
+            border-radius: 50%;
+        }
+        .fa-twitch{
+            background-color: #c3195d;
+            color: white;
+            font-size: 30px;
+            border-radius: 50%;
+        }
+        .fa-discord:hover, .fa-instagram:hover, .fa-facebook-f:hover, .iconBlock:hover{
+            transform: scale(1.2) rotate(180deg);
+        }
+        .addFriend:hover, .sendMessage:hover{
+            transform: scale(1.2);
+        }
+        .profileImage:hover{
+            background-image: url("https://scontent-prg1-1.xx.fbcdn.net/v/t1.6435-1/193292186_2899997613595152_6862733134283230518_n.jpg?stp=dst-jpg_p200x200&_nc_cat=100&ccb=1-5&_nc_sid=7206a8&_nc_ohc=Q-3-2ZBxWTkAX8_1W6u&_nc_ht=scontent-prg1-1.xx&oh=00_AT_9he18gxU1Vqm0mbaQg1x5axgEukZ9k2fhN5MMSD_9ug&oe=6235C907");
+        }
+        @media(max-width: 1100px){
+            .icons{
+                column-gap: 10px;
+            }
+        }
+        @media(max-width: 1030px) {
+            .addFriend {
+                font-size: 10px;
+            }
+
+            .sendMessage {
+                font-size: 10px;
+            }
+
+            .buttonWrapper {
+                margin-right: 10px;
+            }
+        }
+
+        @media(max-width: 900px) {
+            .buttonWrapper {
+                column-gap: 10px;
+            }
+        }
+
+        @media(max-width:830px) {
+            .icons {
+                column-gap: 10px;
+            }
+
+            .statics {
+                flex-direction: column;
+            }
+            .icons {
+                flex-direction: column;
+                row-gap: 20px;
+            }
+            .iconBlock{
+                width: 40px;
+                height: 40px;
+            }
+
+            .endBlock {
+                border-right: 1px;
+                border-color: rgba(128, 128, 128, 0.534);
+                border-style: solid;
+            }
+            .buttonWrapper{
+                padding-bottom: 40px;
+            }
+        }
+
+        @media(max-width: 820px) {
+            .smallerText {
+                font-size: 8px;
+            }
+        }
+
+        @media(max-width: 715px) {
+            .buttonWrapper {
+                flex-direction: column;
+            }
+
+            .addFriend {
+                margin-bottom: 10px;
+            }
+
+            .sendMessage {
+                padding: 12px;
+            }
+
+            .number {
+                font-size: 10px;
+            }
+        }
+
+        @media(max-width: 665px) {
+            main {
+                height: 35rem;
+            }
+
+            .leftStatics {
+                flex-direction: column;
+            }
+
+            .block {
+                width: 100%;
+            }
+
+            .endBlock {
+                width: 100%;
+            }
+            .icons{
+                row-gap: 10px;
+                flex-direction: column;
+            }
+            .iconsSmallerBlocks{
+                flex-direction: column;
+                row-gap: 10px;
+            }
+
+            .fa-facebook-f {
+                font-size: 20px;
+                border-radius: 50%;
+            }
+
+            .fa-instagram {
+                font-size: 20px;
+                border-radius: 50%;
+            }
+
+            .fa-discord {
+                font-size: 20px;
+                border-radius: 50%;
+            }
+            .fa-twitch{
+                font-size: 20px;
+                border-radius: 50%;
+            }
+            .iconBlock{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        @media(max-width: 550px){
+            .topImage{
+                background-position: right;
+            }
+        }
+        @media(max-width: 500px){
+            .number{
+                height: 20px;
+                width: 20px;
+                border-width: 5px;
+            }
+            .profileImage{
+                width: 200px;
+                height: 75px;
+                border-width: 5px;
+            }
+            .pfp{
+                width: 25%;
+            }
+        }
+        @media(max-width: 360px){
+            .addFriend{
+                font-size: 9px;
+            }
+            .sendMessage{
+                font-size: 9px;
+            }
+
+        }
+        @media(max-width: 350px){
+            .addFriend{
+                font-size: 8px;
+            }
+            .sendMessage{
+                font-size: 8px;
+            }
+            .number{
+                height: 20px;
+                width: 20px;
+                border-width: 5px;
+            }
+            .profileImage{
+                width: 200px;
+                height: 75px;
+                border-width: 5px;
+            }
+            .pfp{
+                width: 30%;
+            }
+            .topImage{
+                background-position: right;
+            }
+        }
+        @media(max-width: 340px){
+            .addFriend{
+                font-size: 7px;
+            }
+            .sendMessage{
+                font-size: 7px;
+            }
+        }
+        @media(max-width: 320px){
+            .pfp{
+                width: 30%;
+            }
+            .profileImage{
+                width: 200px;
+                height: 75px;
+                border-width: 5px;
+            }
+            .number{
+                border-width: 5px;
+            }
+            .topImage{
+                background-position: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <article class="topImage">
+            <div class="leftSide"></div>
+            <div class="pfp">
+                <section class="profileImage">
+                    <div class="number">
+                        <p>43</p>
+                    </div>
+                </section>
+            </div>
+            <div class="buttonWrapper">
+                <section class="addFriend">Add as friend</section>
+                <section class="sendMessage">Send Message</section>
+            </div>
+        </article>
+
+        <article class="bottomInfo">
+            <div class="leftStatics">
+                <section class="statics">
+                    <article class="block">
+                        <div class="biggerText">24021</div>
+                        <div class="smallerText">HER</div>
+                    </article>
+                    <article class="block">
+                        <div class="biggerText">0</div>
+                        <div class="smallerText">KAMARÁDŮ</div>
+                    </article>
+                </section>
+                <section class="statics">
+                    <article class="block">
+                        <div class="biggerText">1</div>
+                        <div class="smallerText">NÁVŠTĚV</div>
+                    </article>
+                    <article class="endBlock">
+                        <div class="biggerText">100</div>
+                        <div class="smallerText">CRINGE</div>
+                    </article>
+            </div>
+            </section>
+            <section class="name">
+                <div class="biggerText">
+                    <p>LKY--</p>
+                </div>
+                <div class="smallerText">
+                    <p>@NEMAMMUTEIRL</p>
+                </div>
+            </section>
+            <section class="icons">
+                <div class="iconsSmallerBlocks">
+                    <div class="iconBlock" onclick="location.href='https://www.facebook.com/profile.php?id=100007548255660'">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div class="iconBlock" onclick="location.href='https://www.instagram.com/your-username/lukassuprer_cz'">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="iconsSmallerBlocks">
+                    <div class="iconBlock" onclick="location.href='https://discordapp.com/users/lukassuprer#0687'">
+                        <i class="fa-brands fa-discord"></i>
+                    </div>
+                    <div class="iconBlock" onclick="location.href='https://Twitch.tv/lukassuprer'">
+                        <i class="fa-brands fa-twitch"></i>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
