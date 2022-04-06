@@ -1,0 +1,246 @@
+html{
+    scroll-behavior: smooth;
+}
+body {
+    background-color: black;
+    position: relative;
+    overflow-x: hidden;
+    font-family: 'Syne Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    width: 100%;
+    background: url("https://64.media.tumblr.com/418ca2edef31229031cd4b7da22df15c/ed242f5e3827e50d-e9/s1280x1920/13937de4d6d0b268cf79a1177587ee6c7206cf02.jpg") top center no-repeat, url("https://64.media.tumblr.com/b7337746aa64dc5fac41e4cbd3d29639/ed242f5e3827e50d-7b/s1280x1920/dfd985ec549e479c59e986ada1df098c594297b1.jpg") no-repeat center center, url("https://64.media.tumblr.com/c2c200d1d90a7f474e16aa60ab96be97/ed242f5e3827e50d-6a/s1280x1920/892f5b83b3d9c8fc3ae36b561d31832d9f5e25fa.jpg");
+    backdrop-filter: blur(4px);
+}
+
+h1 {
+    font-family: 'Neonderthaw', cursive;
+    width: 90%;
+    color: #ff3c00;
+    font-size: 100px;
+    text-align: center;
+    border-style: dashed;
+    border-radius: 20px;
+    text-shadow: 0 0 5px #ff3c00, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.even {
+    width: 75%;
+    height: 350px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* overflow: hidden; */
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+}
+
+.odd {
+    width: 75%;
+    height: 350px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* overflow: hidden; */
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+}
+
+.hour {
+    width: 11%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ball {
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.textBlock {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex;
+    align-items: center;
+}
+
+.evenImage {
+    width: 40%;
+    height: 100%;
+    background-image: url("https://c.tenor.com/K0InTo5jCVQAAAAC/sundrop-moondrop.gif");
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-left: 10px;
+}
+
+.oddImage {
+    width: 40%;
+    height: 100%;
+    background-image: url("https://c.tenor.com/K0InTo5jCVQAAAAC/sundrop-moondrop.gif");
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-right: 15px;
+}
+
+
+.quote {
+    color: #4E4E50;
+    width: 15%;
+    padding-top: 20%;
+}
+
+#navbar {
+    position: sticky;
+    top: 10px;
+    color: white;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 20px;
+    border-style: solid;
+    padding: 5px;
+    display: flex;
+    gap: 10%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.scroll {
+    height: 1000px;
+    width: 10px;
+    background-color: white;
+}
+
+footer {
+    width: 100%;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: white;
+    margin-top: 100px;
+}
+@media(min-width: 930px){
+    .hour{
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 890px){
+    a{
+        font-size: 15px;
+    }
+}
+@media(max-width: 400px){
+    a{
+        font-size: 10px;
+    }
+}
+@media(max-width: 500px){
+    h1{
+        font-size: 75px;
+    }
+}
+@media(max-width: 940px){
+    .textBlock{
+        font-size: 15px;
+    }
+}
+@media(min-width: 700px){
+    main{
+        width: 90%;
+    }
+    #navbar{
+        padding: 2%;
+    }
+}
+@media(max-width: 700px){
+    main{
+        width: 80%;
+    }
+    .even{
+        flex-direction: column;
+        height: 450px;
+    }
+    .odd{
+        height: 450px;
+        flex-direction: column-reverse;
+    }
+    .oddImage{
+        width: 96%;
+        height: 40%;
+        border-top-left-radius: 0%;
+        border-bottom-right-radius: 20px;
+    }
+    .evenImage{
+        width: 96%;
+        height: 40%;
+        border-top-right-radius: 0%;
+        border-bottom-right-radius: 20px; 
+        border-bottom-left-radius: 20px; 
+    }
+    .hour{
+        flex-direction: row;
+        width: 100%;
+        height: 10%;
+        margin-top: 5%;
+    }
+    .textBlock{
+        height: 50%;
+        width: 100%;
+        margin: 5%;
+    }
+}
+@media(max-width: 540px){
+    .hour{
+        font-size: 17px;
+    }
+    .textBlock{
+        font-size: 13px;
+        margin: 10%;
+    }
+}
+@media(max-width: 460px){
+    .ball{
+        height: 15px;
+        width: 25px;
+    }
+}
