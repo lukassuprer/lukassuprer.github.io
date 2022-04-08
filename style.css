@@ -33,7 +33,19 @@ main {
     align-items: center;
     width: 75%;
     flex-direction: column;
-    gap: 100px;
+    gap: 50px;
+}
+
+.buttonNavbar {
+    margin-left: 100%;
+    position: sticky;
+    top: 20px;
+    visibility: hidden;
+    background-color: transparent;
+    color: #ff8000;
+    text-shadow: 0 0 5px #ff3c00, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    border-style: none;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 }
 
 .even {
@@ -46,6 +58,16 @@ main {
     justify-content: flex-start;
     align-items: center;
     color: white;
+    -webkit-box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.position{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
 }
 
 .odd {
@@ -89,9 +111,11 @@ main {
 .evenImage {
     width: 40%;
     height: 100%;
-    background-image: url("https://c.tenor.com/K0InTo5jCVQAAAAC/sundrop-moondrop.gif");
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaI-3e1O6UK2IRhZ3hOHyOyDZqhG-h9PsK9A&usqp=CAU"); */
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
     opacity: 1;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -101,9 +125,11 @@ main {
 .oddImage {
     width: 40%;
     height: 100%;
-    background-image: url("https://c.tenor.com/K0InTo5jCVQAAAAC/sundrop-moondrop.gif");
+    /* background-image: url("https://c.tenor.com/K0InTo5jCVQAAAAC/sundrop-moondrop.gif"); */
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
     opacity: 1;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -118,7 +144,7 @@ main {
 }
 
 #navbar {
-    position: sticky;
+    /* position: sticky; */
     top: 10px;
     color: white;
     border-color: white;
@@ -133,6 +159,30 @@ main {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 2;
+    visibility: visible;
+}
+
+#navbarSmall{
+    top: 10px;
+    color: white;
+    border-color: white;
+    position: sticky;
+    top: 50px;
+    margin-left: 100%;
+    border-width: 1px;
+    border-radius: 20px;
+    border-style: solid;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    width: 20%;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    visibility: hidden;
 }
 
 a {
@@ -190,18 +240,32 @@ footer {
     }
     #navbar{
         padding: 2%;
+        visibility: visible;
+    }
+    .buttonNavbar{
+        visibility: hidden;
+    }
+    #navbarSmall{
+        visibility: hidden;
+        height: 0;
     }
 }
 @media(max-width: 700px){
+    #navbar{
+        visibility: hidden;
+    }
+    .buttonNavbar{
+        visibility: visible;
+    }
     main{
         width: 80%;
     }
     .even{
         flex-direction: column;
-        height: 450px;
+        height: 500px;
     }
     .odd{
-        height: 450px;
+        height: 500px;
         flex-direction: column-reverse;
     }
     .oddImage{
@@ -209,6 +273,8 @@ footer {
         height: 40%;
         border-top-left-radius: 0%;
         border-bottom-right-radius: 20px;
+        background-size: cover;
+        background-position: top;
     }
     .evenImage{
         width: 96%;
@@ -216,6 +282,8 @@ footer {
         border-top-right-radius: 0%;
         border-bottom-right-radius: 20px; 
         border-bottom-left-radius: 20px; 
+        background-size: cover;
+        background-position: top;
     }
     .hour{
         flex-direction: row;
@@ -228,6 +296,7 @@ footer {
         width: 100%;
         margin: 5%;
     }
+    /*Tlačízko na navbar*/
 }
 @media(max-width: 540px){
     .hour{
@@ -242,5 +311,31 @@ footer {
     .ball{
         height: 15px;
         width: 25px;
+    }
+    main{
+        width: 100%;
+    }
+    #navbar{
+        width: 80%;
+        height: 40px;
+    }
+    #navbar > a {
+        font-size: 13px;
+    }
+    #navbarSmall{
+        margin-left: 90%;
+        width: 10%;
+    }
+    .buttonNavbar{
+        margin-left: 90%;
+    }
+    .textBlock{
+        width: 80%;
+    }
+    .hour{
+        gap: 15px;
+    }
+    .ball{
+        width: 15px;
     }
 }
