@@ -10,16 +10,8 @@ const heading = document.querySelector('#heading');
 
 setPosition(0);
 setInterval(checkPos, 1);
-setInterval(checkTopPos, 1);
 buttonNavbar.addEventListener('click', navbarButtonClick);
 
-function checkTopPos(){
-    if(heading.getBoundingClientRect().top >= buttonNavbar.getBoundingClientRect().top){
-        navbarSmall.classList.remove('active');
-        buttonNavbar.classList.remove('active');
-        navbarSmall.classList.add('hidden');
-    }
-}
 
 function setPosition(numberOfPosition){
     let position = arrayOfPositions[numberOfPosition];
