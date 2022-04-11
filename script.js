@@ -1,11 +1,25 @@
-let posNumber = -1;
+let posNumber = 0;
 const arrayOfPositions = document.querySelectorAll('.position');
+const elementA = document.querySelectorAll('a');
+const navbarStripes = document.querySelectorAll('.navbarButtonStripe');
 const navbar = document.getElementById('navbar');
 const buttonNavbar = document.querySelector('.buttonNavbar');
-const navbarSmall = document.getElementById('navbarSmall');
+const crossIcon = document.querySelector('#crossIcon');
+const navbarSmall = document.querySelector('.navbarSmall');
+const heading = document.querySelector('#heading');
 
+setPosition(0);
 setInterval(checkPos, 1);
+setInterval(checkTopPos, 1);
 buttonNavbar.addEventListener('click', navbarButtonClick);
+
+function checkTopPos(){
+    if(heading.getBoundingClientRect().top >= buttonNavbar.getBoundingClientRect().top){
+        navbarSmall.classList.remove('active');
+        buttonNavbar.classList.remove('active');
+        navbarSmall.classList.add('hidden');
+    }
+}
 
 function setPosition(numberOfPosition){
     let position = arrayOfPositions[numberOfPosition];
@@ -16,6 +30,7 @@ function setPosition(numberOfPosition){
     // navbar.style.position = "relative";
     navbar.style.zIndex = "1";
     position.appendChild(navbar);
+    navbar.classList.toggle("active");
 }
 function checkPos(){
     const rect = navbar.getBoundingClientRect();
@@ -29,7 +44,7 @@ function checkPos(){
             setPosition(posNumber)
         }
     }
-    else if(rect.top > 845){
+    else if(rect.top > 570){
         if(posNumber > 0){
             posNumber--;
             setPosition(posNumber)
@@ -43,9 +58,13 @@ function checkPos(){
 
 function navbarButtonClick(){
     if(navbarSmall.style.visibility == "visible"){
-        navbarSmall.style.visibility = "hidden";
+        navbarSmall.classList.toggle('active');
+        buttonNavbar.classList.toggle('active');
+        navbarSmall.classList.add('hidden');
     }
     else{
-        navbarSmall.style.visibility = "visible";
+        navbarSmall.classList.toggle('active');
+        buttonNavbar.classList.toggle('active');
+        navbarSmall.classList.remove('hidden');
     }
 }
