@@ -13,14 +13,15 @@ body {
     flex-direction: column;
     z-index: 1;
     width: 100%;
-    background: url("https://64.media.tumblr.com/418ca2edef31229031cd4b7da22df15c/ed242f5e3827e50d-e9/s1280x1920/13937de4d6d0b268cf79a1177587ee6c7206cf02.jpg") top center no-repeat, url("https://64.media.tumblr.com/b7337746aa64dc5fac41e4cbd3d29639/ed242f5e3827e50d-7b/s1280x1920/dfd985ec549e479c59e986ada1df098c594297b1.jpg") no-repeat center center, url("https://64.media.tumblr.com/c2c200d1d90a7f474e16aa60ab96be97/ed242f5e3827e50d-6a/s1280x1920/892f5b83b3d9c8fc3ae36b561d31832d9f5e25fa.jpg");
-    backdrop-filter: blur(4px);
+    background: url("/Images/background\ freddy.jpg") top center no-repeat, url("/Images/background\ image\ chcica.jpg") no-repeat center center, url("/Images/gattor\ backgound.jpg");
+    /* backdrop-filter: blur(4px); */
 }
 
 h1 {
     font-family: 'Neonderthaw', cursive;
     width: 90%;
-    color: #ff3c00;
+    /* color: #ff3c00; */
+    color: black;
     font-size: 100px;
     text-align: center;
     border-style: dashed;
@@ -47,7 +48,8 @@ main {
     justify-content: center;
     align-items: center;
     margin-left: 90%;
-    position: sticky;
+    position: fixed;
+    /* position: sticky; */
     top: 20px;
     visibility: hidden;
     color: #ff8000;
@@ -61,6 +63,10 @@ main {
     overflow: hidden;
     transition: all 0.2s ease-in;
     z-index: 2;
+}
+
+.navbarContainer{
+    position:fixed;
 }
 
 .buttonNavbar.active .bar1 {
@@ -139,6 +145,7 @@ main {
     font-size: 30px;
     flex-direction: column;
     gap: 20px;
+    font-family: 'Rubik Glitch', cursive;
 }
 
 .ball {
@@ -208,19 +215,40 @@ main {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 2;
     visibility: visible;
+    font-family: 'Rubik Glitch', cursive;
+    animation-name: fade;
+    transition: all .5s ease-in-out;
+    opacity: 1;
+    transform: TranslateX(0px);
 }
 
-#navabr.active{
-    transform: translateX(100px);
+@keyframes mymove {
+    0% {transform: TranslateX(0px);}
+    100% {transform: TranslateX(-2000px);}
+  }
+
+#navbar.notMoved{
+    transform: TranslateX(0px);
 }
+#navbar.moved{
+    transform: TranslateX(-2000px);
+}
+
+/* #navbar.active{
+    height: 300px;
+    visibility: visible;
+} */
+
+.navbarText .active{
+    color: red;
+}   
 
 .navbarSmall {
-    top: 10px;
     color: white;
     border-color: white;
-    position: sticky;
+    position: fixed;
     top: 70px;
-    margin-left: 100%;
+    right: 0;
     border-width: 1px;
     border-radius: 20px;
     border-style: solid;
@@ -229,21 +257,20 @@ main {
     flex-direction: column;
     gap: 10%;
     width: 20%;
-    height: 300px;
+    height: 0px;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
     visibility: hidden;
     transition: all .6s ease;
-    transform: translateX(100px);
-    float: right;
+    font-family: 'Rubik Glitch', cursive;
 }
 .navbarSmall a{
     font-size: 0;
 }
 .navbarSmall.active a{
-    font-size: 17px;
+    font-size: 16px;
 }
 .navbarSmall.active{
     transform: translateX(0px);
@@ -307,15 +334,34 @@ a {
 }
 
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 50px;
     width: 100%;
     height: 200px;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
+    font-size: 20px;
     color: white;
     margin-top: 100px;
+}
+footer > p{
+    font-size: 40px;
+    font-family: 'Rubik Glitch', cursive;
+}
+footer section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 40px;
+    padding-left: 20px;
 }
 
 @media(max-width: 930px) {
@@ -393,7 +439,6 @@ footer {
     }
     .navbarSmall{
         width: 50px;
-        margin-left: 90%;
     }
 
     main {
@@ -482,15 +527,13 @@ footer {
     }
 
     .navbarSmall.active a {
-        font-size: 11px;
+        font-size: 9.5px;
     }
 
     .navbarSmall.active {
-        margin-left: 87%;
-        width: 10%;
+        width: 9%;
     }
     .navbarSmall{
-        margin-left: 87%;
         width: 10%;
     }
 
