@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(46.) Galerie </title>
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        main {
+            height: 60%;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5%;
+        }
+
+        .top {
+            width: 100%;
+            height: 75%;
+            background-color: black;
+            border-radius: 5px;
+            background-position: center;
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            height: 25%;
+            gap: 2.5%;
+            flex-wrap: no-wrap;
+            overflow-x: scroll;
+            flex-shrink: 0;
+            scrollbar-width: thin;
+        }
+
+        .child {
+            height: 100%;
+            width: 20%;
+            border-radius: 5px;
+            filter: grayscale(100%);
+            flex-shrink: 0;
+        }
+
+        .childOnClick {
+            height: 100%;
+            width: 20%;
+            border-radius: 5px;
+            filter: grayscale(0%);
+            flex-shrink: 0;
+        }
+
+        .child:hover {
+            filter: grayscale(50%);
+        }
+
+        /*Nevěděl jsem jak si představujete zobrazení obrázku cover, contain .... Dal jsem contain protože to asi vypadá nejlépe*/
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="top" id="top">
+
+        </div>
+        <div class="bottom" id="bottom">
+
+        </div>
+    </main>
+    <textarea id="urlText"></textarea>
+    <button id="buttonClick">Add URL</button>
+</body>
+<script>
+    let previousId;
+    let timeOutId;
+    let arrayImage = [
+        "https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/186280585.jpg?k=df97fb8a7ad7a70dfcef5d44634691bad0531fceb70f66f8f4c044e0be79d2ee&o=",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBtgGBhblj--CdMt4w9ZcCQdYccD7vb_ic5w&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ08-uXiKh1DyoMtO6EtgtxT-bP-YkAEEG7Gg&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0MBAh1_8sj6rA6QhH31iBkhG2v7rLce4OSQ&usqp=CAU",
+        "https://www.zing.cz/wp-content/uploads/2021/09/silksong.jpg",
+        "https://cdn.discordapp.com/attachments/803240968114667550/960628972595589291/unknown.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-u9dUxXsbvocskI8u1eDmDPNqHiJPiDCbSA&usqp=CAU",
+        "https://scontent.fprg4-1.fna.fbcdn.net/v/t1.6435-9/103870286_2619451784983071_6160864120268680657_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=19026a&_nc_ohc=J6YqJ7xsKA4AX_5L1UJ&_nc_ht=scontent.fprg4-1.fna&oh=00_AT8R0lictllFqLtjiuGws46MIUt2OJaUoLzsGHA0L1XzdQ&oe=6272631F",
+        "https://cdn.pixabay.com/photo/2015/11/25/00/31/tree-1061057_960_720.jpg",  
+        "https://scontent.fprg4-1.fna.fbcdn.net/v/t1.6435-1/193292186_2899997613595152_6862733134283230518_n.jpg?stp=dst-jpg_p480x480&_nc_cat=100&ccb=1-5&_nc_sid=7206a8&_nc_ohc=cVFBPZT408gAX8FRs1T&_nc_ht=scontent.fprg4-1.fna&oh=00_AT8kqwlKxta1bReYaxyQt7mw2Juhcpj4Q6Yi8I1ZNq9DKQ&oe=62711C87",
+        "https://scontent.fprg4-1.fna.fbcdn.net/v/t1.6435-9/193384043_2899997866928460_6884403917119774142_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=e3f864&_nc_ohc=DgK18HG6o78AX9NjgWA&_nc_ht=scontent.fprg4-1.fna&oh=00_AT_8jYnW3O0Zr5SMqDIvz4jrFg_4kL5Jl3RjVqOQWZ3CUQ&oe=62712962",
+    ];
+    createElements();
+    for (let index = 0; index < arrayImage.length; index++) {
+        const element = document.getElementById(index);
+        element.style.backgroundImage = `url(${arrayImage[index]})`;
+        element.style.backgroundSize = "cover";
+    }
+
+    document.querySelector(".bottom").addEventListener("click", function (e) {
+        isActive(e.target.id);
+    });
+    document.querySelector("#buttonClick").addEventListener("click", function (e){
+        getUrl();
+    });
+    isActive(0);
+
+    function isActive(id) {
+        if (id != "bottom") {
+            if (previousId != null) {
+                const previousImage = document.getElementById(previousId);
+                previousImage.classList.add("child");
+                previousImage.classList.remove("childOnClick");
+            }
+            const currentImage = document.getElementById(id);
+            currentImage.classList.remove("child");
+            currentImage.classList.add("childOnClick");
+            previousId = id;
+            location.href = "#" + id;
+            //Odkaz na lokaci https://www.w3schools.com/jsref/prop_loc_href.asp
+
+            const elementTop = document.getElementById("top");
+            elementTop.style.backgroundImage = `url(${arrayImage[id]})`;
+            elementTop.style.backgroundRepeat = "no-repeat";
+            elementTop.style.backgroundSize = "contain";
+        }
+        automaticScroll();
+    }
+
+    function automaticScroll() {
+        const timeOutTime = 6000;
+        if (timeOutId != null) {
+            clearTimeout(timeOutId);
+        }
+        timeOutId = setTimeout(function () {
+            const nextId = parseInt(previousId) + 1;
+            if (nextId < arrayImage.length) {
+                isActive(nextId);
+            } else {
+                isActive(0);
+            }
+        }, timeOutTime);
+    }
+
+    function createElements() {
+        const copyArray = arrayImage;
+        arrayImage = JSON.parse(localStorage.getItem('arrayImage'));
+        if(arrayImage == null){
+            arrayImage = copyArray;
+        }
+        let i = 0;
+        arrayImage.forEach(element => {
+            const newElement = document.createElement('div');
+            newElement.classList.add("child");
+            newElement.setAttribute("id", i);
+            //https://www.educative.io/edpresso/how-to-add-an-id-to-element-in-javascript
+            //Zde jsem našel jak přidat id přes js
+            newElement.style.backgroundImage = `url(${element})`;
+            newElement.style.backgroundPosition = "center";
+            document.getElementById("bottom").appendChild(newElement);
+            i++;
+        });
+    }
+
+    function getUrl(){
+        const textArea = document.getElementById("urlText");
+        let urlToAdd = textArea.value;
+        console.log(urlToAdd);
+        if (urlToAdd.includes("https://") || urlToAdd.includes("http://")) {
+            const newElement = document.createElement('div');
+            newElement.classList.add("child");
+            newElement.setAttribute("id", arrayImage.length);
+            newElement.style.backgroundImage = `url(${urlToAdd})`;
+            newElement.style.backgroundPosition = "center";
+            newElement.style.backgroundSize = "cover";
+            document.getElementById("bottom").appendChild(newElement);
+            arrayImage.push(urlToAdd);
+            isActive(arrayImage.length - 1);
+        } else {
+            alert("Zadejte prosím platnou adresu");
+        }
+        localStorage.setItem("arrayImage", JSON.stringify(arrayImage));
+    }
+</script>
+
+</html>

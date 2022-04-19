@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(50.) Čas</title>
+    <link rel="stylesheet" href="https://api-ssps.cajthaml.eu/file/global/css/reset_ld9mrCCm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .site {
+            width: 100vw;
+            height: 100vh;
+            background-color: #2d2a32;
+        }
+
+        .child {
+            height: 100px;
+            width: 100px;
+            border-radius: 10px;
+            font-size: 50px;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 0;
+            text-shadow: 0px 0px 5px black;
+        }
+
+        #numberOfClocks {
+            z-index: 2;
+            position: absolute;
+        }
+
+        .sliderContainer {
+            height: 40px;
+            width: 170px;
+            background-color: #393441;
+            z-index: 1;
+            position: absolute;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sliderContainer">
+        <input type="range" id="numberOfClocks" min="3" max="1500">
+    </div>
+    <div class="site"></div>
+</body>
+<script>
+    const arrayOfEmojis = ["🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚", "🕛"];
+    let spaceWidth = 0;
+    let spaceHeight = 0;
+    const slider = document.querySelector("#numberOfClocks");
+    let bodyArray = document.querySelectorAll(".child");
+
+    slider.value = 100;
+    slider.addEventListener("input", function () {
+        createElements(slider.value);
+    });
+
+    createElements(100);
+
+    function createElements(numberOfElements) {
+        //Random color generator : https://css-tricks.com/snippets/javascript/random-hex-color/
+        bodyArray = document.querySelectorAll(".child");
+        removeElements(numberOfElements);
+        for (let i = bodyArray.length; i < numberOfElements; i++) {
+            const child = document.createElement("div");
+            child.classList.add("child");
+            child.style.backgroundColor = randomBackGroundColor(child);
+            child.innerHTML = arrayOfEmojis[Math.floor(Math.random() * arrayOfEmojis.length)];
+            document.querySelector(".site").appendChild(child);
+            child.addEventListener("click", function () {
+                moveElement(child);
+            });
+            child.addEventListener("mouseover", function () {
+                child.style.backgroundColor = randomBackGroundColor(child);
+            });
+            moveElement(child);
+            bodyArray = document.querySelectorAll(".child");
+        }
+    }
+    function removeElements(numberOfElements) {
+        bodyArray = document.querySelectorAll(".child");
+        if (numberOfElements < bodyArray.length) {
+            for (let i = bodyArray.length; i > numberOfElements; i--) {
+                bodyArray[0].remove();
+                bodyArray = document.querySelectorAll(".child");
+            }
+        }
+    }
+    function randomBackGroundColor(element) {
+        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        return "#" + randomColor;
+    }
+    function moveElement(element) {
+        //Zde jsem našel hezké řešení posouvání elementů po stránce bez overflowu : https://stackoverflow.com/questions/62747242/how-to-randomize-the-position-of-an-element-when-clicked
+        spaceHeight = document.body.offsetHeight - element.clientHeight;
+        spaceWidth = document.body.offsetWidth - element.clientWidth;
+        element.style.top = Math.floor(Math.random() * spaceHeight) + "px";
+        element.style.left = Math.floor(Math.random() * spaceWidth) + "px";
+    }
+</script>
+
+</html>
