@@ -13,8 +13,9 @@ body {
     flex-direction: column;
     z-index: 1;
     width: 100%;
-    background: url("/Images/background\ freddy.jpg") top center no-repeat, url("/Images/background\ image\ chcica.jpg") no-repeat center center, url("/Images/gattor\ backgound.jpg");
+    background: url("Images/background\ freddy.jpg") top center no-repeat, url("Images/background\ image\ chcica.jpg") no-repeat center center, url("Images/gattor\ backgound.jpg");
     /* backdrop-filter: blur(4px); */
+    /* background-attachment: fixed; */
 }
 
 h1 {
@@ -26,6 +27,7 @@ h1 {
     text-align: center;
     border-style: dashed;
     border-radius: 20px;
+    /*neon trubky https://css-tricks.com/how-to-create-neon-text-with-css/*/
     text-shadow: 0 0 5px #ff3c00, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
 }
 
@@ -36,6 +38,8 @@ main {
     width: 75%;
     flex-direction: column;
     gap: 50px;
+    overflow: hidden;
+    padding-bottom: 20px;
 }
 
 .fa-solid {
@@ -47,7 +51,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 90%;
+    /* margin-left: 90%; */
+    right: 5px;
     position: fixed;
     /* position: sticky; */
     top: 20px;
@@ -248,7 +253,7 @@ main {
     border-color: white;
     position: fixed;
     top: 70px;
-    right: 0;
+    right: 5px;
     border-width: 1px;
     border-radius: 20px;
     border-style: solid;
@@ -509,6 +514,9 @@ footer section{
 }
 
 @media(max-width: 460px) {
+    footer section{
+        padding-left: 0;
+    }
     p{
         font-size: 13px;
     }
@@ -538,10 +546,12 @@ footer section{
     }
 
     .buttonNavbar.active {
-        margin-left: 89%;
+        /* margin-left: 89%; */
+        right: 5px;
     }
     .buttonNavbar {
-        margin-left: 89%;
+        /* margin-left: 89%; */
+        right: 5px;
         height: 30px;
         width: 30px;
     }
