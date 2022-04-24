@@ -1,6 +1,6 @@
 let posNumber = 0;
 const arrayOfPositions = document.querySelectorAll('.position');
-const elementA = document.querySelectorAll('a');
+const hrefElements = document.querySelectorAll('a');
 const navbarStripes = document.querySelectorAll('.navbarButtonStripe');
 const navbar = document.getElementById('navbar');
 const buttonNavbar = document.querySelector('.buttonNavbar');
@@ -8,11 +8,23 @@ const crossIcon = document.querySelector('#crossIcon');
 const navbarSmall = document.querySelector('.navbarSmall');
 const heading = document.querySelector('#heading');
 const textNavbar = document.querySelectorAll('.navbarText')
+const body = document.getElementById('body');
+let navbarIsVisible = false;
 
 setPosition(0);
 setInterval(checkPos, 1);
 buttonNavbar.addEventListener('click', navbarButtonClick);
-console.log(textNavbar.length);
+navbarSmall.addEventListener('click', navbarButtonClick);
+hrefElements.forEach(element => {
+    element.addEventListener('click', function () {
+        console.log(this.href);
+        hrefWindowPosition();
+    });
+});
+
+function hrefWindowPosition(){
+    window.scrollTo(0, window.screenY + 100);
+}
 
 function animateNavBarIn() {
     navbar.classList.remove('notMoved');
@@ -28,24 +40,7 @@ function animateNavBarIn() {
     navbar.classList.add('notMoved');
 }
 
-function animateNavBarOut() {
-    navbar.classList.remove('moved');
-    navbar.classList.add('notMoved');
-    navbar.animate([
-        { transform: 'translateX(0px)' },
-        { transform: 'translateX(-2000px)' },
-    ], {
-        duration: 1000,
-        iterations: 1
-    });
-    navbar.classList.remove('notMoved');
-    navbar.classList.add('moved');
-    navbar.style.animation = "mymove";
-}
-
-
 function setPosition(numberOfPosition) {
-    //animateNavBarOut();
     let position = arrayOfPositions[numberOfPosition];
     navbar.style.top = position.getBoundingClientRect().top + "px";
     navbar.style.left = position.getBoundingClientRect().left + "px";
@@ -80,14 +75,18 @@ function checkPos() {
 }
 
 function navbarButtonClick() {
-    if (navbarSmall.style.visibility == "visible") {
+    if (navbarIsVisible == true) {
         navbarSmall.classList.toggle('active');
         buttonNavbar.classList.toggle('active');
         navbarSmall.classList.add('hidden');
+        body.classList.toggle('stopScrolling');
+        navbarIsVisible = false;
     }
     else {
         navbarSmall.classList.toggle('active');
         buttonNavbar.classList.toggle('active');
         navbarSmall.classList.remove('hidden');
+        body.classList.toggle('stopScrolling');
+        navbarIsVisible = true;
     }
 }
