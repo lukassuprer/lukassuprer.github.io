@@ -11,37 +11,41 @@ const textNavbar = document.querySelectorAll('.navbarText')
 const body = document.getElementById('body');
 let navbarIsVisible = false;
 
+//Images
+let images = [];
+let evenImages = document.querySelectorAll('.evenImage');
+let oddImages = document.querySelectorAll('.oddImage');
+let nightImages = [];
+const myImageCount = 2;
+
 setPosition(0);
 setInterval(checkPos, 1);
 buttonNavbar.addEventListener('click', navbarButtonClick);
 navbarSmall.addEventListener('click', navbarButtonClick);
 changeImage();
 
-function changeImage(){
-    let images = [];
-    let evenImages = document.querySelectorAll('.evenImage');
-    let oddImages = document.querySelectorAll('.oddImage');
-    let nightImages = [];
-    const myImageCount = 2;
-    for(let i=0; i < 4; i++){
+function changeImage() {
+    for (let i = 0; i < 4; i++) {
         nightImages.push(evenImages[i]);
         nightImages.push(oddImages[i]);
     }
-    for(let i = 0; i < 7; i++){
-        for(let j = 0; j < myImageCount; j++){
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < myImageCount; j++) {
             images.push("url('./Images/" + i + "/" + j + ".jpg')");
         }
     }
-    
-    timeOutId = setTimeout(function () {
-        let j = 0;
-        for(let i = 0; i < 7; i++){
-            nightImages[i].style.backgroundImage = images[Math.floor(Math.random() * ((j + myImageCount) - j) + j)];
-            j += myImageCount;
-        }
-    }, 2000);
+    imageInterval();
+    const intervalId = setInterval(function () {
+        imageInterval();
+    }, 4000);
 }
-
+function imageInterval() {
+    let j = 0;
+    for (let i = 0; i < 7; i++) {
+        nightImages[i].style.backgroundImage = images[Math.floor(Math.random() * ((j + myImageCount) - j) + j)];
+        j += myImageCount;
+    }
+}
 function animateNavBarIn() {
     navbar.classList.remove('notMoved');
     navbar.classList.add('moved');
