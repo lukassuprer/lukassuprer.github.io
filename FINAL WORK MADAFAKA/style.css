@@ -41,8 +41,8 @@ main {
     padding-bottom: 30px;
 }
 
-.fa-solid {
-    color: black;
+.opacityFadeOut{
+    opacity: 0;
 }
 
 .buttonNavbar {
@@ -170,9 +170,10 @@ main {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
-    opacity: 1;
     border-radius: 20px;
     padding-left: 10px;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }
 
 .oddImage {
@@ -185,6 +186,7 @@ main {
     opacity: 1;
     border-radius: 20px;
     padding-right: 15px;
+    transition: opacity 1s ease-in-out;
 }
 
 

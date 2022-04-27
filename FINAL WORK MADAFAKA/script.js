@@ -16,7 +16,7 @@ let images = [];
 let evenImages = document.querySelectorAll('.evenImage');
 let oddImages = document.querySelectorAll('.oddImage');
 let nightImages = [];
-const myImageCount = 2;
+const myImageCount = 3;
 
 setPosition(0);
 setInterval(checkPos, 1);
@@ -37,13 +37,29 @@ function changeImage() {
     imageInterval();
     const intervalId = setInterval(function () {
         imageInterval();
-    }, 4000);
+    }, 9000);
 }
 function imageInterval() {
     let j = 0;
     for (let i = 0; i < 7; i++) {
-        nightImages[i].style.backgroundImage = images[Math.floor(Math.random() * ((j + myImageCount) - j) + j)];
-        j += myImageCount;
+        let animation = nightImages[i].animate([
+            { opacity: 1 },
+            { opacity: 0 }
+        ], {
+            duration: 3000,
+            iterations: 1
+        });
+        animation.addEventListener('finish', function () {
+            nightImages[i].style.backgroundImage = images[Math.floor(Math.random() * ((j + myImageCount) - j) + j)];
+            j += myImageCount;
+            nightImages[i].animate([
+                { opacity: 0 },
+                { opacity: 1 }
+            ], {
+                duration: 3000,
+                iterations: 1
+            });
+        });
     }
 }
 function animateNavBarIn() {
