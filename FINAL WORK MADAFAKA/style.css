@@ -159,8 +159,14 @@ main {
     width: 50%;
     height: 80%;
     display: flex;
-    justify-content: flex;
+    justify-content: center;
     align-items: center;
+    font-size: 20px;
+    padding: 20px;
+}
+
+ul{
+    list-style-type: circle;
 }
 
 .evenImage {
@@ -173,7 +179,6 @@ main {
     border-radius: 20px;
     padding-left: 10px;
     opacity: 1;
-    transition: opacity 1s ease-in-out;
 }
 
 .oddImage {
@@ -186,7 +191,6 @@ main {
     opacity: 1;
     border-radius: 20px;
     padding-right: 15px;
-    transition: opacity 1s ease-in-out;
 }
 
 
@@ -325,6 +329,17 @@ footer section{
     padding-left: 20px;
 }
 
+.fa-brands{
+    /*Instagram color: https://codepen.io/thomasrye/pen/VaRoYv*/
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+}
+.fa-brands:hover{
+    transform: scale(1.2);
+    transform: rotate(45deg);
+}
+
 @media(max-width: 930px) {
     .hour {
         font-size: 18px;
@@ -366,7 +381,7 @@ footer section{
 
 @media(max-width: 940px) {
     .textBlock {
-        font-size: 15px;
+        font-size: 17px;
     }
 }
 
@@ -405,6 +420,9 @@ footer section{
         background-size: cover;
         background-position: center;
     }
+    .hour{
+        font-size: 16px;
+    }
 }
 
 @media(max-width: 700px) {
@@ -420,7 +438,7 @@ footer section{
     }
 
     main {
-        width: 80%;
+        width: 100%;
         padding-bottom: 0;
         gap: 10px;
     }
@@ -474,10 +492,6 @@ footer section{
         font-size: 17px;
     }
 
-    .textBlock {
-        font-size: 13px;
-        margin: 10%;
-    }
     main {
         width: 100%;
     }
