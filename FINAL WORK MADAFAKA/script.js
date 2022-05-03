@@ -48,14 +48,14 @@ async function setDataMessage(){
     if(data <= 100){
         gameDataMessage.innerHTML = 'Game is kinda dead :(' + "<br>" + data + ' players online';
     }
-    else if(data > 100){
+    else if(data < 200){
         gameDataMessage.innerHTML = 'Its not fun as it used to be' + "<br>"+ data + ' players online';
     }
-    else if(data > 200){
+    else if(data < 300){
         gameDataMessage.innerHTML = 'It can be better' + "<br>" + data + ' players online';
     }
     else if(data > 300){
-        gameDataMessage.innerHTML = data + ' players online';
+        gameDataMessage.innerHTML = 'Its doing really good' + "<br>" + data + ' players online';
     }
     else{
         gameDataMessage.innerHTML = 'We dont know how much players is online';
