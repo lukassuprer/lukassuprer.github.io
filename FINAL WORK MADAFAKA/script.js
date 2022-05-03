@@ -10,6 +10,7 @@ const heading = document.querySelector('#heading');
 const textNavbar = document.querySelectorAll('.navbarText');
 const textSmallNavbar = document.querySelectorAll('.navbarSmallText');
 const body = document.getElementById('body');
+const gameDataMessage = document.querySelector('#statusHeading');
 let navbarIsVisible = false;
 
 //Images
@@ -25,7 +26,49 @@ setInterval(checkPos, 1);
 buttonNavbar.addEventListener('click', navbarButtonClick);
 navbarSmall.addEventListener('click', navbarButtonClick);
 changeImage();
+imageOnStart();
+getNumberOfPlayers();
+setDataMessage();
+async function getNumberOfPlayers() {
+    try {
+        const response = await fetch('https://firewatch-api.sebight.eu/api/players/747660', {
+            method: 'GET',
+            credentials: 'same-origin'
+        });
+        const exam = await response.json();
+        return exam;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
+async function setDataMessage(){
+    const data = await getNumberOfPlayers();
+
+    if(data <= 100){
+        gameDataMessage.innerHTML = 'Game is kinda dead :(' + "<br>" + data + ' players online';
+    }
+    else if(data > 100){
+        gameDataMessage.innerHTML = 'Its not fun as it used to be' + "<br>"+ data + ' players online';
+    }
+    else if(data > 200){
+        gameDataMessage.innerHTML = 'It can be better' + "<br>" + data + ' players online';
+    }
+    else if(data > 300){
+        gameDataMessage.innerHTML = data + ' players online';
+    }
+    else{
+        gameDataMessage.innerHTML = 'We dont know how much players is online';
+    }
+}
+
+function imageOnStart() {
+    let j = 0;
+    for (let i = 0; i < 7; i++) {
+        nightImages[i].style.backgroundImage = images[j + nextImage];
+        j += myImageCount;
+    }
+}
 function changeImage() {
     for (let i = 0; i < 4; i++) {
         nightImages.push(evenImages[i]);
