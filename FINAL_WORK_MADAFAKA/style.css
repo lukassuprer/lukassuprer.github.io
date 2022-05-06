@@ -367,10 +367,10 @@ footer article a:nth-child(3n){
     color: white;
     flex-direction: column;
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    gap: 15%;
 }
 .gameStatus h2{
     font-size: 20px;
-    margin-top: 10%;
     text-align: center;
 }
 
@@ -562,6 +562,9 @@ footer article a:nth-child(3n){
 }
 
 @media(max-width: 460px) {
+    .gameStatus{
+        gap: 5%;
+    }
     .odd{
         width: 90%;
     }
