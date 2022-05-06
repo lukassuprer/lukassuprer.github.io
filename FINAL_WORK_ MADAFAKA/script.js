@@ -30,6 +30,7 @@ imageOnStart();
 getNumberOfPlayers();
 setDataMessage();
 async function getNumberOfPlayers() {
+    //API poskytnuta panem Sebastianem Himmerem, Hosting od pana Cajthamla
     try {
         const response = await fetch('https://firewatch-api.sebight.eu/api/players/747660', {
             method: 'GET',
